@@ -9,13 +9,13 @@ function App() {
         <img className="w-full" src="./public/imagens/header.svg" alt="" />
       </header>
       <Formulario />
-      <Board titulo="Back-End" />
-      <Board titulo="Front-End" />
-      <Board titulo="Data Science" />
-      <Board titulo="Devops" />
-      <Board titulo="Ux e Design" />
-      <Board titulo="Mobile" />
-      <Board titulo="Inovaçao e Gestão" />
+      <Board times="Back-End" />
+      <Board times="Front-End" />
+      <Board times="Data Science" />
+      <Board times="Devops" />
+      <Board times="Ux e Design" />
+      <Board times="Mobile" />
+      <Board times="Inovaçao e Gestão" />
     </div>
   );
 }

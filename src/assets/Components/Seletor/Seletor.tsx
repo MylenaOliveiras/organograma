@@ -1,21 +1,25 @@
 import React from "react";
 
+const times = [
+  "Back-End",
+  "Front-End",
+  "Data Science",
+  "Devops",
+  "Ux e Design",
+  "Mobile",
+  "Inovaçao e Gestão",
+];
+
+export interface ISeletor {
+  areas: [];
+}
 export default function Seletor() {
-  const areas = [
-    "Back-End",
-    "Front-End",
-    "Data Science",
-    "Devops",
-    "Ux e Design",
-    "Mobile",
-    "Inovaçao e Gestão",
-  ];
   return (
     <label>
       Time:
       <select className="p-6 w-full shadow-lg my-6">
-        {areas.map((area) => (
-          <option label={area} value={area} />
+        {times.map((time) => (
+          <option label={time} value={time} />
         ))}
       </select>
     </label>
