@@ -3,14 +3,9 @@ import { useState } from "react";
 export interface ICampoTexto {
   label: string;
   placeholder: string;
-  textValue: string;
 }
 
-export default function CampoTexto({
-  label,
-  placeholder,
-  textValue,
-}: ICampoTexto) {
+export default function CampoTexto({ label, placeholder }: ICampoTexto) {
   const [text, setText] = useState("");
 
   return (

@@ -1,8 +1,10 @@
 import Titulo from "../Titulo/Titulo";
 import Card, { ICards } from "../Card/Card";
+import { useState } from "react";
 
 interface IBoard {
-  times:
+  cards: ICards[];
+  areas:
     | "Back-End"
     | "Front-End"
     | "Data Science"
@@ -10,46 +12,52 @@ interface IBoard {
     | "Ux e Design"
     | "Mobile"
     | "Inovaçao e Gestão";
-  card: ICards[];
 }
 
-export default function Board({ times }: IBoard) {
+export default function Board({ areas }: IBoard) {
+  const [cards, setCards] = useState<ICards[]>([]);
+
+  function newCard(card: ICards) {
+    setCards([...cards, card]);
+  }
+
   let background = "bg-green/20";
   let bgbarra = "bg-green";
 
-  if (times == "Front-End") {
+  if (areas == "Front-End") {
     background = "bg-blue/20";
     bgbarra = "bg-blue";
-  } else if (times == "Data Science") {
+  } else if (areas == "Data Science") {
     background = "bg-lime/20";
     bgbarra = "bg-lime";
-  } else if (times == "Devops") {
+  } else if (areas == "Devops") {
     background = "bg-red/20";
     bgbarra = "bg-red";
-  } else if (times == "Ux e Design") {
+  } else if (areas == "Ux e Design") {
     background = "bg-pink/20";
     bgbarra = "bg-pink";
-  } else if (times == "Mobile") {
+  } else if (areas == "Mobile") {
     background = "bg-yellow/20";
     bgbarra = "bg-yellow";
-  } else if (times == "Inovaçao e Gestão") {
+  } else if (areas == "Inovaçao e Gestão") {
     background = "bg-orange/20";
     bgbarra = "bg-orange";
   }
 
   return (
     <section className={`w-full h-auto text-center py-10 ${background}`}>
-      <Titulo titulo={times} />
+      <Titulo titulo={areas} />
       <div className={`w-8 h-1 m-auto my-3 ${bgbarra}`} />
       <div className="flex gap-6 mx-40">
-        {
+        {cards.map((card) => (
           <Card
-            nome="mylena"
-            cargo="desenvolvedora react"
-            imagem="skdjf"
-            areas={"Front-End"}
+            nome={card.nome}
+            cargo={card.cargo}
+            areas={card.areas}
+            imagem={card.imagem}
+            newCard={newCard}
           />
-        }{" "}
+        ))}
       </div>
     </section>
   );
