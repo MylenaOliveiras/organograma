@@ -34,6 +34,7 @@ export default function Card({ nome, cargo, imagem, areas }: ICards) {
   return (
     <div className="w-64 h-64 bg-white rounded-xl center">
       <header className={`${background} h-24 rounded-t-xl	`}></header>
+      <img src={imagem} className="" />
       <h1>{nome}</h1>
       <p>{cargo}</p>
     </div>

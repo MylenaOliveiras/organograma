@@ -14,13 +14,7 @@ interface IBoard {
     | "Inovaçao e Gestão";
 }
 
-export default function Board({ areas }: IBoard) {
-  const [cards, setCards] = useState<ICards[]>([]);
-
-  function newCard(card: ICards) {
-    setCards([...cards, card]);
-  }
-
+export default function Board({ areas, cards }: IBoard) {
   let background = "bg-green/20";
   let bgbarra = "bg-green";
 
@@ -55,7 +49,6 @@ export default function Board({ areas }: IBoard) {
             cargo={card.cargo}
             areas={card.areas}
             imagem={card.imagem}
-            newCard={newCard}
           />
         ))}
       </div>
