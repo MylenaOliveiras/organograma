@@ -2,6 +2,7 @@ import { ChangeEvent, useState } from "react";
 import Board from "./Components/Board/Board";
 import Formulario from "./Components/Formulario/Formulario";
 import Footer from "./Components/Footer/Footer";
+import { ICards } from "./Components/Card/Card";
 
 const times = [
   "Programação",
@@ -14,9 +15,9 @@ const times = [
 ];
 
 function App() {
-  const [cards, setCards] = useState([]);
+  const [cards, setCards] = useState<ICards[]>([]);
 
-  const addCard = (card) => {
+  const addCard = (card: ICards) => {
     setCards([...cards, card]);
   };
 
