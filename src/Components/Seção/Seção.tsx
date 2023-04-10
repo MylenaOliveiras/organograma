@@ -17,7 +17,7 @@ export default function Seção({ onClick }: ISecao) {
           className="animate-bounce rounded-full bg-purple mr-36 lg:-mt-14"
           onClick={onClick}
         >
-          <img src="./public/imagens/buttonplus.svg" className="w-20" />
+          <img src="./imagens/buttonplus.svg" className="w-20" />
         </button>
       </div>
     </section>

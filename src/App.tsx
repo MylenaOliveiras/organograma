@@ -26,7 +26,7 @@ function App() {
   return (
     <div className="App">
       <header>
-        <img className="w-full" src="./public/imagens/header.svg" alt="" />
+        <img className="w-full" src="./imagens/header.svg" alt="" />
       </header>
       <Formulario cardCadastrado={(card) => addCard(card)} times={time} />.
       {times.map((time) => (
