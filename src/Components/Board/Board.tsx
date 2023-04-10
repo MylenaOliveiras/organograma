@@ -1,56 +1,49 @@
 import Titulo from "../Titulo/Titulo";
 import Card, { ICards } from "../Card/Card";
-import { useState } from "react";
 
 interface IBoard {
   cards: ICards[];
-  areas:
-    | "Back-End"
-    | "Front-End"
-    | "Data Science"
-    | "Devops"
-    | "Ux e Design"
-    | "Mobile"
-    | "Inovaçao e Gestão";
+  time: string;
 }
-
-export default function Board({ areas, cards }: IBoard) {
+export default function Board({ time, cards }: IBoard) {
   let background = "bg-green/20";
   let bgbarra = "bg-green";
 
-  if (areas == "Front-End") {
+  if (time == "Front-End") {
     background = "bg-blue/20";
     bgbarra = "bg-blue";
-  } else if (areas == "Data Science") {
+  } else if (time == "Data Science") {
     background = "bg-lime/20";
     bgbarra = "bg-lime";
-  } else if (areas == "Devops") {
+  } else if (time == "Devops") {
     background = "bg-red/20";
     bgbarra = "bg-red";
-  } else if (areas == "Ux e Design") {
+  } else if (time == "Ux e Design") {
     background = "bg-pink/20";
     bgbarra = "bg-pink";
-  } else if (areas == "Mobile") {
+  } else if (time == "Mobile") {
     background = "bg-yellow/20";
     bgbarra = "bg-yellow";
-  } else if (areas == "Inovaçao e Gestão") {
+  } else if (time == "Inovaçao e Gestão") {
     background = "bg-orange/20";
     bgbarra = "bg-orange";
   }
 
   return (
-    <section className={`w-full h-auto text-center py-10 ${background}`}>
-      <Titulo titulo={areas} />
+    <section className={` h-auto text-center py-10 ${background}`}>
+      <Titulo titulo={time} />
       <div className={`w-8 h-1 m-auto my-3 ${bgbarra}`} />
-      <div className="flex gap-6 mx-40">
-        {cards.map((card) => (
-          <Card
-            nome={card.nome}
-            cargo={card.cargo}
-            areas={card.areas}
-            imagem={card.imagem}
-          />
-        ))}
+      <div className="flex gap-6 ">
+        {cards
+          .filter((card) => card.time === time)
+          .map((card) => (
+            <Card
+              nome={card.nome}
+              cargo={card.cargo}
+              time={card.time}
+              imagem={card.imagem}
+            />
+          ))}
       </div>
     </section>
   );

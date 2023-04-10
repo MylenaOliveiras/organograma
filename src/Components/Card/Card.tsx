@@ -4,39 +4,33 @@ export interface ICards {
   nome: string;
   cargo: string;
   imagem: string;
-  areas:
-    | "Back-End"
-    | "Front-End"
-    | "Data Science"
-    | "Devops"
-    | "Ux e Design"
-    | "Mobile"
-    | "Inovaçao e Gestão";
+  time: string;
 }
-
-export default function Card({ nome, cargo, imagem, areas }: ICards) {
+export default function Card({ nome, cargo, imagem, time }: ICards) {
   let background = "bg-green";
 
-  if (areas == "Front-End") {
+  if (time == "Front-End") {
     background = "bg-blue";
-  } else if (areas == "Data Science") {
+  } else if (time == "Data Science") {
     background = "bg-lime";
-  } else if (areas == "Devops") {
+  } else if (time == "Devops") {
     background = "bg-red";
-  } else if (areas == "Ux e Design") {
+  } else if (time == "Ux e Design") {
     background = "bg-pink";
-  } else if (areas == "Mobile") {
+  } else if (time == "Mobile") {
     background = "bg-yellow";
-  } else if (areas == "Inovaçao e Gestão") {
+  } else if (time == "Inovaçao e Gestão") {
     background = "bg-orange";
   }
 
   return (
-    <div className="w-64 h-64 bg-white rounded-xl center">
-      <header className={`${background} h-24 rounded-t-xl	`}></header>
-      <img src={imagem} className="" />
-      <h1>{nome}</h1>
-      <p>{cargo}</p>
+    <div className="w-64 bg-white rounded-xl center min-w-min">
+      <header className={`${background} h-24 rounded-t-xl	-mb-14`}></header>
+      <img src={imagem} className="w-32 rounded-full mx-auto" />
+      <h1 className="text-purple font-montserrat font-semibold text-lg pt-3 ">
+        {nome}
+      </h1>
+      <p className="pt-2 break-words font-montserrat text-base	">{cargo}</p>
     </div>
   );
 }

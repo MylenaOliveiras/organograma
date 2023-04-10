@@ -10,7 +10,6 @@ export interface ICampoTexto {
 export default function CampoTexto({
   label,
   placeholder,
-  value,
   onChange,
 }: ICampoTexto) {
   const [valor, setValor] = useState("");

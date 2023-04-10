@@ -1,39 +1,36 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import Board from "./Components/Board/Board";
 import Formulario from "./Components/Formulario/Formulario";
 import Footer from "./Components/Footer/Footer";
-import Card, { ICards } from "./Components/Card/Card";
+
+const times = [
+  "Programação",
+  "Front-End",
+  "Data Science",
+  "Devops",
+  "UX e Design",
+  "Mobile",
+  "Inovação e Gestão",
+];
 
 function App() {
-  const times = [
-    { area: "Programação" },
-    { area: "Front-End" },
-    { area: "Data Science" },
-    { area: "Devops" },
-    { area: "UX e Design" },
-    { area: "Mobile" },
-    { area: "Inovação e Gestão" },
-  ];
+  const [cards, setCards] = useState([]);
 
-  const [cards, setCards] = useState<ICards[]>([]);
-
-  function addCard(card: ICards) {
+  const addCard = (card) => {
     setCards([...cards, card]);
-  }
+  };
+
+  const time = times.map((time) => time);
 
   return (
     <div className="App">
       <header>
         <img className="w-full" src="./public/imagens/header.svg" alt="" />
       </header>
-      <Formulario />
-      <Board areas="Back-End" cards={cards} />
-      <Board areas="Front-End" cards={cards} />
-      <Board areas="Data Science" cards={cards} />
-      <Board areas="Devops" cards={cards} />
-      <Board areas="Ux e Design" cards={cards} />
-      <Board areas="Mobile" cards={cards} />
-      <Board areas="Inovaçao e Gestão" cards={cards} />
+      <Formulario cardCadastrado={(card) => addCard(card)} times={time} />.
+      {times.map((time) => (
+        <Board cards={cards} time={time} />
+      ))}
       <Footer />
     </div>
   );

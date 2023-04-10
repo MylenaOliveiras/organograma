@@ -1,24 +1,34 @@
 import React from "react";
 
 export interface ISeletor {
-  times: [];
+  times: string[];
   value: string;
   label: string;
   aoAlterado: (value: string) => void;
 }
 export default function Seletor({ times, aoAlterado, value, label }: ISeletor) {
   return (
-    <label>
-      {label}
+    <div>
+      <label>{label}</label>
       <select
-        className="p-6 w-full shadow-lg my-6"
         onChange={(evento) => aoAlterado(evento.target.value)}
-        value={times}
+        value={value}
+        className="
+          p-6
+          w-full
+          shadow-lg
+          my-6"
+        required
       >
-        {times.map((time) => (
-          <option label={time} key={time} value={time} />
-        ))}
+        <option
+          className=""
+          label="Selecione o time que você pertence"
+          value=""
+        ></option>
+        {times.map((time) => {
+          return <option key={time}>{time}</option>;
+        })}
       </select>
-    </label>
+    </div>
   );
 }
