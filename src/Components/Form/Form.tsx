@@ -38,7 +38,7 @@ export default function Form({ teams, cardRegistered }: IForm) {
             });
           }}
         >
-          <Title title="Preencha os dados para criar o card do colaborador." />
+          <Title>Preencha os dados para criar o card do colaborador</Title>
           <Input
             placeholder="Digite seu nome"
             label="Nome"
@@ -63,7 +63,7 @@ export default function Form({ teams, cardRegistered }: IForm) {
             value={team}
             teams={teams}
           />
-          <Botao descricao="Criar card" />
+          <Botao>Criar card</Botao>
         </form>
       )}
 

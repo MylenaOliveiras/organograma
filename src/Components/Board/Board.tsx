@@ -31,7 +31,7 @@ export default function Board({ team, cards }: IBoard) {
 
   return (
     <section className={` h-auto text-center py-10 px-10 ${primary}`}>
-      <Titulo title={team} />
+      <Titulo>{team}</Titulo>
       <div className={`w-8 h-1 m-auto my-3 ${secondary}`} />
       <div className="flex gap-6 ">
         {cards
