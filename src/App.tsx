@@ -1,10 +1,10 @@
 import { ChangeEvent, useState } from "react";
 import Board from "./Components/Board/Board";
-import Formulario from "./Components/Formulario/Formulario";
 import Footer from "./Components/Footer/Footer";
 import { ICards } from "./Components/Card/Card";
+import Form from "./Components/Form/Form";
 
-const times = [
+const teams = [
   "Programação",
   "Front-End",
   "Data Science",
@@ -21,16 +21,16 @@ function App() {
     setCards([...cards, card]);
   };
 
-  const time = times.map((time) => time);
+  const team = teams.map((team) => team);
 
   return (
     <div className="App">
       <header>
         <img className="w-full" src="./imagens/header.svg" alt="" />
       </header>
-      <Formulario cardCadastrado={(card) => addCard(card)} times={time} />.
-      {times.map((time) => (
-        <Board cards={cards} time={time} />
+      <Form cardRegistered={(card) => addCard(card)} teams={team} />.
+      {teams.map((team) => (
+        <Board cards={cards} team={team} />
       ))}
       <Footer />
     </div>

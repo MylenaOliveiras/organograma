@@ -1,17 +1,17 @@
 import React from "react";
 
-export interface ISeletor {
-  times: string[];
+export interface ISelect {
+  teams: string[];
   value: string;
   label: string;
-  aoAlterado: (value: string) => void;
+  newValue: (value: string) => void;
 }
-export default function Seletor({ times, aoAlterado, value, label }: ISeletor) {
+export default function Select({ teams, newValue, value, label }: ISelect) {
   return (
     <div>
       <label>{label}</label>
       <select
-        onChange={(evento) => aoAlterado(evento.target.value)}
+        onChange={(event) => newValue(event.target.value)}
         value={value}
         className="
           p-6
@@ -25,8 +25,8 @@ export default function Seletor({ times, aoAlterado, value, label }: ISeletor) {
           label="Selecione o time que você pertence"
           value=""
         ></option>
-        {times.map((time) => {
-          return <option key={time}>{time}</option>;
+        {teams.map((team) => {
+          return <option key={team}>{team}</option>;
         })}
       </select>
     </div>

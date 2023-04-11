@@ -1,22 +1,18 @@
 import { useState, ChangeEvent } from "react";
 
-export interface ICampoTexto {
+export interface IInput {
   label: string;
   placeholder: string;
   value: string;
   onChange: (value: string) => void;
 }
 
-export default function CampoTexto({
-  label,
-  placeholder,
-  onChange,
-}: ICampoTexto) {
-  const [valor, setValor] = useState("");
-  const aoAlterado = (evento: ChangeEvent<HTMLInputElement>) => {
-    const novoValor = evento.target.value;
-    setValor(novoValor);
-    onChange(novoValor);
+export default function Input({ label, placeholder, onChange }: IInput) {
+  const [value, setValue] = useState("");
+  const onChanges = (evento: ChangeEvent<HTMLInputElement>) => {
+    const newValue = evento.target.value;
+    setValue(newValue);
+    onChange(newValue);
   };
 
   return (
@@ -25,8 +21,8 @@ export default function CampoTexto({
       <input
         className="p-6 w-full shadow-lg outline-none"
         placeholder={placeholder}
-        onChange={aoAlterado}
-        value={valor}
+        onChange={onChanges}
+        value={value}
         required
       ></input>
     </div>

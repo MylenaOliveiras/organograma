@@ -1,8 +1,8 @@
-export interface ISecao {
+export interface ISection {
   onClick: () => void;
 }
 
-export default function Seção({ onClick }: ISecao) {
+export default function Section({ onClick }: ISection) {
   return (
     <section className="py-20">
       <main className="text-center">
