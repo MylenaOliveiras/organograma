@@ -49,14 +49,15 @@ function App() {
     setCards([...cards, card]);
   };
 
-  const team = teams.map((team) => team.name);
-
   return (
     <div className="App">
       <header>
         <img className="w-full" src="./imagens/header.svg" />
       </header>
-      <Form cardRegistered={(card) => addCard(card)} teams={team} />
+      <Form
+        cardRegistered={(card) => addCard(card)}
+        teams={teams.map((team) => team.name)}
+      />
       {teams.map((team) => (
         <Board
           cards={cards}

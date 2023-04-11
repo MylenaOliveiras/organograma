@@ -8,10 +8,8 @@ export interface IInput {
 }
 
 export default function Input({ label, placeholder, onChange }: IInput) {
-  const [value, setValue] = useState("");
   const onChanges = (evento: ChangeEvent<HTMLInputElement>) => {
     const newValue = evento.target.value;
-    setValue(newValue);
     onChange(newValue);
   };
 
@@ -22,7 +20,6 @@ export default function Input({ label, placeholder, onChange }: IInput) {
         className="p-6 w-full shadow-lg outline-none"
         placeholder={placeholder}
         onChange={onChanges}
-        value={value}
         required
       ></input>
     </div>
