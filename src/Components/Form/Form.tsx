@@ -17,6 +17,7 @@ export default function Form({ teams, cardRegistered }: IForm) {
   const [position, setPosition] = useState("");
   const [image, setImage] = useState("");
   const [team, setTeam] = useState("");
+  const [primaryColor, setPrimaryColor] = useState("");
 
   const [showForm, setShowForm] = useState(false);
   function visible() {
@@ -35,6 +36,7 @@ export default function Form({ teams, cardRegistered }: IForm) {
               position,
               image,
               team,
+              primaryColor,
             });
           }}
         >
