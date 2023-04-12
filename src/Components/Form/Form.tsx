@@ -38,6 +38,10 @@ export default function Form({ teams, cardRegistered }: IForm) {
               team,
               primaryColor,
             });
+            setPosition("");
+            setName("");
+            setImage("");
+            setTeam("");
           }}
         >
           <Title>Preencha os dados para criar o card do colaborador</Title>

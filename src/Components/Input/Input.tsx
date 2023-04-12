@@ -7,7 +7,7 @@ export interface IInput {
   onChange: (value: string) => void;
 }
 
-export default function Input({ label, placeholder, onChange }: IInput) {
+export default function Input({ label, placeholder, onChange, value }: IInput) {
   const onChanges = (evento: ChangeEvent<HTMLInputElement>) => {
     const newValue = evento.target.value;
     onChange(newValue);
@@ -21,6 +21,7 @@ export default function Input({ label, placeholder, onChange }: IInput) {
         placeholder={placeholder}
         onChange={onChanges}
         required
+        value={value}
       ></input>
     </div>
   );
