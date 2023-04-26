@@ -1,12 +1,7 @@
 import Titulo from "../Title/Title";
-import Card, { ICards } from "../Card/Card";
+import Card from "../Card/Card";
+import { IBoard } from "./types";
 
-interface IBoard {
-  cards: ICards[];
-  team: string;
-  primaryColor: string;
-  secondaryColor: string;
-}
 export default function Board({
   cards,
   team,
@@ -22,6 +17,7 @@ export default function Board({
           .filter((card) => card.team === team)
           .map((card) => (
             <Card
+              id={card.id}
               name={card.name}
               position={card.position}
               team={card.team}

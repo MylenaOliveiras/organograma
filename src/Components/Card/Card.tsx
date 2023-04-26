@@ -1,13 +1,6 @@
-import React, { useState } from "react";
+import { ICard } from "./types";
 
-export interface ICards {
-  name: string;
-  position: string;
-  image: string;
-  team: string;
-  primaryColor: string;
-}
-export default function Card({ name, position, image, primaryColor }: ICards) {
+export default function Card({ name, position, image, primaryColor }: ICard) {
   return (
     <div className="w-64 bg-white rounded-xl center min-w-min pb-4 my-10">
       <header className={`h-24 rounded-t-xl	-mb-14 ${primaryColor}`}></header>

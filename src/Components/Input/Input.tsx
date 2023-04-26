@@ -1,11 +1,5 @@
-import { useState, ChangeEvent } from "react";
-
-export interface IInput {
-  label: string;
-  placeholder: string;
-  value: string;
-  onChange: (value: string) => void;
-}
+import { ChangeEvent } from "react";
+import { IInput } from "./types";
 
 export default function Input({ label, placeholder, onChange, value }: IInput) {
   const onChanges = (evento: ChangeEvent<HTMLInputElement>) => {

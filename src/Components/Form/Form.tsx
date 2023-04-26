@@ -1,23 +1,16 @@
 import Botao from "../Botao/Botao";
 import Input from "../Input/Input";
-import { ICards } from "../Card/Card";
 import Select from "../Select/Select";
 import Title from "../Title/Title";
-
 import Section from "../Section/Section";
+import { IForm } from "./types";
 import { useState } from "react";
-
-interface IForm {
-  teams: string[];
-  cardRegistered: (card: ICards) => void;
-}
 
 export default function Form({ teams, cardRegistered }: IForm) {
   const [name, setName] = useState("");
   const [position, setPosition] = useState("");
   const [image, setImage] = useState("");
   const [team, setTeam] = useState("");
-  const [primaryColor, setPrimaryColor] = useState("");
 
   const [showForm, setShowForm] = useState(false);
   function visible() {
@@ -36,7 +29,6 @@ export default function Form({ teams, cardRegistered }: IForm) {
               position,
               image,
               team,
-              primaryColor,
             });
             setPosition("");
             setName("");

@@ -1,11 +1,4 @@
-import React from "react";
-
-export interface ISelect {
-  teams: string[];
-  value: string;
-  label: string;
-  newValue: (value: string) => void;
-}
+import { ISelect } from "./types";
 export default function Select({ teams, newValue, value, label }: ISelect) {
   return (
     <div>

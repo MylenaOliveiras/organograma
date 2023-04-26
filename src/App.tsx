@@ -1,8 +1,10 @@
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
 import Board from "./Components/Board/Board";
 import Footer from "./Components/Footer/Footer";
-import { ICards } from "./Components/Card/Card";
+import { ICard } from "./Components/Card/types";
+import { IFieldValues } from "./Components/Form/types";
 import Form from "./Components/Form/Form";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 const teams = [
   {
@@ -41,13 +43,44 @@ const teams = [
     secondary: "bg-orange/20",
   },
 ];
+async function getTeam() {
+  const response = await fetch("/team");
+  const data = await response.json();
+  return data;
+}
+
+async function postTeam(values: IFieldValues) {
+  const response = await fetch("/team", {
+    method: "POST",
+    body: JSON.stringify(values),
+  });
+  const data = await response.json();
+  return data;
+}
 
 function App() {
-  const [cards, setCards] = useState<ICards[]>([]);
+  const { data, isLoading, isError } = useQuery<ICard[]>({
+    queryKey: ["team"],
+    queryFn: getTeam,
+  });
 
-  const addCard = (card: ICards) => {
-    setCards([...cards, card]);
+  const queryClient = useQueryClient();
+  const { mutate } = useMutation({ mutationFn: postTeam });
+
+  const addCard = (card: IFieldValues) => {
+    mutate(card, {
+      onSuccess() {
+        queryClient.invalidateQueries(["team"]);
+      },
+    });
   };
+
+  if (isLoading) {
+    return <img className="w-40 m-auto mt-72" src="/imagens/loading.gif"></img>;
+  }
+  if (isError) {
+    return <h1>Error!</h1>;
+  }
 
   return (
     <div className="App">
@@ -55,12 +88,13 @@ function App() {
         <img className="w-full" src="./imagens/header.svg" />
       </header>
       <Form
-        cardRegistered={(card) => addCard(card)}
+        cardRegistered={(data) => addCard(data)}
         teams={teams.map((team) => team.name)}
       />
-      {teams.map((team) => (
+      {teams.map((team, index) => (
         <Board
-          cards={cards}
+          key={index}
+          cards={data || []}
           team={team.name}
           primaryColor={team.primary}
           secondaryColor={team.secondary}
