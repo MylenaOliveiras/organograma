@@ -1,6 +1,6 @@
-import { ICard } from "./types";
+import { Cards } from "./types";
 
-export default function Card({ name, position, image, primaryColor }: ICard) {
+export default function Card({ name, position, image, primaryColor }: Cards) {
   return (
     <div className="w-64 bg-white rounded-xl center min-w-min pb-4 my-10">
       <header className={`h-24 rounded-t-xl	-mb-14 ${primaryColor}`}></header>

@@ -1,7 +1,7 @@
-import { ICards } from "../Card/Card";
+import { Cards } from "../Card/types";
 
 export interface IBoard {
-  cards: ICards[];
+  cards: Cards[];
   team: string;
   primaryColor: string;
   secondaryColor: string;

@@ -13,7 +13,7 @@ export class Storage<TData extends { id: number }> {
   add(item: TData) {
     const newItem = {
       ...item,
-      id: Math.max(...this.data.map((o) => o.id)) + 1,
+      id: Math.max(0, ...this.data.map((o) => o.id)) + 1,
     };
     this.data.push(newItem);
     this.save();
@@ -28,6 +28,16 @@ export class Storage<TData extends { id: number }> {
       this.save();
     }
     return found;
+  }
+  delete(id: number) {
+    const found = this.get(id);
+    if (found) {
+      const index = this.data.indexOf(found);
+      if (index > -1) {
+        this.data.splice(index, 1);
+        this.save();
+      }
+    }
   }
 
   getValue() {

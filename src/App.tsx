@@ -1,11 +1,10 @@
 import { useState } from "react";
 import Board from "./Components/Board/Board";
 import Footer from "./Components/Footer/Footer";
-import { ICard } from "./Components/Card/types";
-import { IFieldValues } from "./Components/Form/types";
+import { Cards } from "./Components/Card/types";
 import Form from "./Components/Form/Form";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-
+import { getTeam, postTeam } from "./api";
 const teams = [
   {
     name: "Programação",
@@ -43,23 +42,9 @@ const teams = [
     secondary: "bg-orange/20",
   },
 ];
-async function getTeam() {
-  const response = await fetch("/team");
-  const data = await response.json();
-  return data;
-}
-
-async function postTeam(values: IFieldValues) {
-  const response = await fetch("/team", {
-    method: "POST",
-    body: JSON.stringify(values),
-  });
-  const data = await response.json();
-  return data;
-}
 
 function App() {
-  const { data, isLoading, isError } = useQuery<ICard[]>({
+  const { data, isLoading, isError } = useQuery<Cards[]>({
     queryKey: ["team"],
     queryFn: getTeam,
   });
@@ -67,7 +52,7 @@ function App() {
   const queryClient = useQueryClient();
   const { mutate } = useMutation({ mutationFn: postTeam });
 
-  const addCard = (card: IFieldValues) => {
+  const addCard = (card: Cards) => {
     mutate(card, {
       onSuccess() {
         queryClient.invalidateQueries(["team"]);
@@ -75,13 +60,21 @@ function App() {
     });
   };
 
-  if (isLoading) {
-    return <img className="w-40 m-auto mt-72" src="/imagens/loading.gif"></img>;
-  }
   if (isError) {
-    return <h1>Error!</h1>;
+    return (
+      <div className="text-center mt-56">
+        <img className="m-auto" src="./imagens/errorIcon.png" />
+        <h1>Sorry, something went wrong. Please contact the administrator!</h1>
+      </div>
+    );
   }
-
+  if (isLoading) {
+    return (
+      <div className="text-center mt-52">
+        <img className="m-auto" src="./imagens/loadingIcon.gif" />
+      </div>
+    );
+  }
   return (
     <div className="App">
       <header>
