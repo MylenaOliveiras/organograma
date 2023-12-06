@@ -59,7 +59,13 @@ export default function Form({ teams, cardRegistered }: IForm) {
               fullWidth
               required
             />
-            <Select label="Time: " options={teams} name="teams" required />
+            <Select
+              label="Time: "
+              options={teams}
+              name="teams"
+              required
+              fullWidth
+            />
             <OutlinedButton type="submit" disabled={!isValid}>
               Criar card
             </OutlinedButton>
