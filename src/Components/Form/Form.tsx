@@ -1,6 +1,6 @@
 import Title from "../Title/Title";
 import Section from "../Section/Section";
-import { IForm } from "./types";
+import { IFieldValues, IForm } from "./types";
 import { useState } from "react";
 import {
   FormWithMethods,
@@ -18,16 +18,15 @@ export default function Form({ teams, cardRegistered }: IForm) {
 
   const methods = useMethods();
 
-  const { reset, getValues, formState } = methods;
+  const { reset, formState } = methods;
   const { isValid } = formState;
 
-  function onSubmit() {
-    const data = getValues();
+  function onSubmit({ image, name, position, team }: IFieldValues) {
     cardRegistered({
-      image: data.image,
-      name: data.name,
-      position: data.position,
-      team: data.teams,
+      image,
+      name,
+      position,
+      team,
     });
     reset();
   }
@@ -59,7 +58,13 @@ export default function Form({ teams, cardRegistered }: IForm) {
               fullWidth
               required
             />
-            <Select label="Time: " options={teams} name="teams" required />
+            <Select
+              label="Time: "
+              options={teams}
+              name="team"
+              required
+              fullWidth
+            />
             <OutlinedButton type="submit" disabled={!isValid}>
               Criar card
             </OutlinedButton>
