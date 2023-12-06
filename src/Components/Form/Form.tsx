@@ -61,7 +61,7 @@ export default function Form({ teams, cardRegistered }: IForm) {
             <Select
               label="Time:"
               options={teams}
-              name="team"
+              name="teams"
               required
               fullWidth
             />
