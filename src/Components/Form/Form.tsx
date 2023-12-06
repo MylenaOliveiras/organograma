@@ -1,68 +1,76 @@
-import Botao from "../Botao/Botao";
-import Input from "../Input/Input";
-import Select from "../Select/Select";
 import Title from "../Title/Title";
 import Section from "../Section/Section";
 import { IForm } from "./types";
 import { useState } from "react";
+import {
+  FormWithMethods,
+  useMethods,
+  TextField,
+  OutlinedButton,
+  Select,
+} from "@mylena-silva/my-ds";
 
 export default function Form({ teams, cardRegistered }: IForm) {
-  const [name, setName] = useState("");
-  const [position, setPosition] = useState("");
-  const [image, setImage] = useState("");
-  const [team, setTeam] = useState("");
-
   const [showForm, setShowForm] = useState(false);
   function visible() {
     setShowForm((showForm) => !showForm);
   }
 
+  const methods = useMethods();
+
+  const { reset, getValues, formState } = methods;
+  const { isValid } = formState;
+
+  function onSubmit() {
+    const data = getValues();
+    cardRegistered({
+      image: data.image,
+      name: data.name,
+      position: data.position,
+      team: data.teams,
+    });
+    reset();
+  }
+
   return (
     <section>
       {showForm && (
-        <form
-          className="bg-gray max-w-screen-lg py-9 px-16 shadow-lg rounded-3xl m-auto mt-20"
-          onSubmit={(e) => {
-            e.preventDefault();
-            cardRegistered({
-              name,
-              position,
-              image,
-              team,
-            });
-            setPosition("");
-            setName("");
-            setImage("");
-            setTeam("");
-          }}
-        >
-          <Title>Preencha os dados para criar o card do colaborador</Title>
-          <Input
-            placeholder="Digite seu nome"
-            label="Nome"
-            value={name}
-            onChange={(value) => setName(value)}
-          />
-          <Input
-            placeholder="Digite seu cargo"
-            label="Cargo"
-            value={position}
-            onChange={(value) => setPosition(value)}
-          />
-          <Input
-            placeholder="Informe o endereço da Imagem"
-            label="Imagem"
-            value={image}
-            onChange={(value) => setImage(value)}
-          ></Input>
-          <Select
-            label="Time: "
-            newValue={(value) => setTeam(value)}
-            value={team}
-            teams={teams}
-          />
-          <Botao>Criar card</Botao>
-        </form>
+        <div className="p-20  shadow-2xl md:mx-60 mt-10 mx-0">
+          <FormWithMethods methods={methods} onSubmit={onSubmit}>
+            <Title>Preencha os dados para criar o card do colaborador</Title>
+            <TextField
+              name="name"
+              placeholder="Digite seu nome"
+              label="Nome"
+              required
+              fullWidth
+            />
+            <TextField
+              name="position"
+              placeholder="Digite seu cargo"
+              label="Cargo"
+              required
+              fullWidth
+            />
+            <TextField
+              name="image"
+              placeholder="Digite o endereço da Imagem"
+              label="Imagem"
+              fullWidth
+              required
+            />
+            <Select
+              label="Time: "
+              options={teams}
+              name="teams"
+              required
+              fullWidth
+            />
+            <OutlinedButton type="submit" disabled={!isValid}>
+              Criar card
+            </OutlinedButton>
+          </FormWithMethods>
+        </div>
       )}
 
       <Section onClick={visible} />
