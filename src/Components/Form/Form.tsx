@@ -59,7 +59,7 @@ export default function Form({ teams, cardRegistered }: IForm) {
               required
             />
             <Select
-              label="Time: "
+              label="Time:"
               options={teams}
               name="team"
               required
